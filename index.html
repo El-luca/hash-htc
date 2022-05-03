@@ -1,61 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Jogo da Velha</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper">
-        <section class="section__left">
-            <div class="section__info--name">
-                <input class="section__name-players" type="text" placeholder="Jogador 1">
-                <div class="section__info--name-field-player2">
-                    <input class="section__name-players--player2" type="text" placeholder="Jogador 2">
-                    <div class="section__bot-or-player">
-                        <div class="section__ball"></div>
-                    </div>
+      <section class="section__left">
+        <div class="section__info--name">
+          <input
+            class="section__name-players"
+            type="text"
+            placeholder="Jogador 1"
+          />
+          <div class="section__info--name-field-player2">
+            <input
+              class="section__name-players--player2"
+              type="text"
+              placeholder="Jogador 2"
+            />
+            <div class="section__bot-or-player">
+              <div class="section__ball"></div>
+            </div>
+          </div>
+        </div>
+        <h1 class="section__match">Tipos de partidas</h1>
+        <div class="section__tips-match">
+          <p class="section__match-tips">Melhor de 3</p>
+          <div class="section__thee-or-five">
+            <div class="section__swith-ball"></div>
+          </div>
+          <p class="section__match-tips">Melhor de 5</p>
+        </div>
+        <button class="section__play">Jogar</button>
+        <h2 class="section__history-match">Historicos de Partidas</h2>
+        <div class="section__history-last-match">
+          <div class="section__scenary-history">
+            <span class="section__winner-green">Vencedor</span>
+            <p class="section__match-gray">Primeiro Quadro</p>
+          </div>
+          <p class="section__scenery">Cenário</p>
+          <div class="section__mini-wrapper">
+            <div class="section__mini-box">O</div>
+            <div class="section__mini-box">O</div>
+            <div class="section__mini-box">X</div>
+            <div class="section__mini-box">O</div>
+            <div class="section__mini-box"></div>
+            <div class="section__mini-box"></div>
+            <div class="section__mini-box"></div>
+            <div class="section__mini-box"></div>
+            <div class="section__mini-box"></div>
+          </div>
+        </div>
+        <div class="section__history-last-match">
+            <div class="section__scenary-history">
+              <span class="section__winner-green">Vencedor</span>
+              <p class="section__match-gray">Primeiro Quadro</p>
+            </div>
+            <p class="section__scenery">Cenário</p>
+            <div class="section__mini-wrapper">
+              <div class="section__mini-box">O</div>
+              <div class="section__mini-box">O</div>
+              <div class="section__mini-box">X</div>
+              <div class="section__mini-box">O</div>
+              <div class="section__mini-box"></div>
+              <div class="section__mini-box"></div>
+              <div class="section__mini-box"></div>
+              <div class="section__mini-box"></div>
+              <div class="section__mini-box"></div>
+            </div>
+          </div>
+          <button class="section__restart-button">Reiniciar</button>
+      </section>
+      <section class="section__center">
+        <div class="section__scoreboard-winner">
+            <div class="section__scoreboard-of-winner">
+                <span class="section__text">Placar</span>
+            </div>
+            <div class="section__winner-match">
+                <span class="section__scoreboard--player1">01</span>
+                <span class="section__print-to-winner-match">Jogador 1</span>
+                <span class="section__scoreboard--player2">01</span>
+            </div>
+        </div>
+            <div class="section__wrapper">
+                <div class="section__move-to-players">X</div>
+                <div class="section__move-to-players">O</div>
+                <div class="section__move-to-players"></div>
+                <div class="section__move-to-players"></div>
+                <div class="section__move-to-players"></div>
+                <div class="section__move-to-players"></div>
+                <div class="section__move-to-players"></div>
+                <div class="section__move-to-players"></div>
+                <div class="section__move-to-players"></div>
+            </div>
+      </section>
+      <section class="section__right">
+        <div class="section__history-to-move">
+            <span class="section__text-history">Históricos de Jogadas</span>
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">O</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player1-and-color-gray">Jogador 1</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
                 </div>
             </div>
-            <h1 class="section__match">Tipos de partidas</h1>
-            <div class="section__tips-match">
-                <p>Melhor de 3</p>
-                <div class="thee-or-five">
-                    <div class="ball"></div>
-                </div>
-                <p>Melhor de 5</p>
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">X</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player2-and-color-gray">Jogador 2</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
+                </div>             
             </div>
-            <button>Jogar</button>
-            <h2 class="section__history-match">Historicos de Partidas</h2>
-            <div class="section__history-last-match">
-                <div class="section__scenary-history">
-                    <span class="section__winner">Vencedor</span>
-                    <p class="section__last-mach">Primeiro Quadro</p>
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">X</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player2-and-color-gray">Jogador 2</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
                 </div>
-                <p>Cenário</p>
-                <div class="section__mini-wrapper">
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
-                    <div class="section__mini-box"></div>
+            </div>               
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">X</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player2-and-color-gray">Jogador 2</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
                 </div>
             </div>
-        </section>
-        <section class="section__center">
-            <div class="div">lucas</div>
-    
-        </section>
-        <section class="section__right">
-            <div class="div"></div>
-    
-        </section>
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">O</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player1-and-color-gray">Jogador 1</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
+                </div>
+            </div>
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">X</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player2-and-color-gray">Jogador 2</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
+                </div>             
+            </div>
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">X</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player2-and-color-gray">Jogador 2</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
+                </div>
+            </div>               
+            <div class="section__print-move-to-player">
+                <div class="section__print-last-move">X</div>
+                <div class="section__print-player-and-box">
+                    <span class="section__print-history-player2-and-color-gray">Jogador 2</span>
+                    <span class="section__number-square-and-color-blue">Primeiro Quadrado</span>
+                </div>
+            </div>
+        </div>
+      </section>
     </div>
-</body>
+  </body>
 </html>

@@ -6,7 +6,6 @@
 }
 
 .section{
-    height:100vh;
     &__left{
         width: 28%;
         height: 100vh;
@@ -44,8 +43,8 @@
         margin-top: 50px;
         
         &-field-player2{
-            width: 317px;
-            height: 48px;
+            width: 320px;
+            height: 52px;
             display: flex;
             margin-top: 20px;
             background-color: $white;
@@ -54,27 +53,26 @@
             padding: 8px 9px 8px;
             box-sizing: border-box;
 
-            &.focus-within{
+            &:focus-within{
                 box-shadow: 0 0 5px $green;
                 border: 1px solid $lightBlue;
             }
         }        
-
-    }
-    
+    }    
     
     &__name-players--player2{
         width: 239px;
         border:0;
         outline: none;
-        
-
+        border: none;
     }
+
     &__name-players{
         width: 317px;
         height: 48px;
         border-radius: 10px;
         outline: none;
+        border: none;
             
         &:focus{        
             box-shadow: 1px 0 5px $green;
@@ -87,8 +85,9 @@
         height:32px;
         background-color: $darkBlue;
         border-radius: 100px;
-        padding-top: 4px;
+        margin: 0;
         padding-left: 4px;
+        // margin-bottom: 3px
     }
 
     &__ball{
@@ -96,6 +95,7 @@
         height: 24px;
         background-color: $white;
         border-radius: 50%;
+        margin: 3px
     }
 
     &__match{
@@ -107,4 +107,290 @@
         margin-top: 40px;
     }
 
+    &__tips-match{
+        display: flex;
+        width: 317px;
+        height: 48px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__match-tips{
+        color: $white;
+        font-size: calculator-rem(16);
+        font-weight: 400;
+        width: 87px;
+        height: 24px;
+    }
+
+    &__thee-or-five{
+        background-color: $darkBlue;
+        border: 1px solid $white;
+        width: 56px;
+        height: 32px;
+        border-radius: 100px;
+    }
+
+    &__swith-ball{
+        background-color: $white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin:4px 4px 4px 28px ;
+    }
+
+    &__play{
+        background-color: $green;
+        width: 317px;
+        height: 54px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 45px;
+        color: $white;
+        font-size: calculator-rem(24);
+        font-weight: 500;
+
+        &:hover{
+            border: 1px solid $green;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            background-color: $darkBlue;
+            color: $green;            
+        }
+    }
+
+    &__history-match{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 317px;
+        height: 24px;
+        font-size: calculator-rem(16px);
+        font-weight: 700;
+        color: $white;
+        margin-top: 38px;
+    }
+
+    &__history-last-match{
+        width: 317px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    &__scenary-history{
+        width: 168px;
+        height: 50px;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        background-color: $white;
+        border-radius: 10px;
+    }
+
+    &__winner-green{
+        width: 64px;
+        height: 24px;
+        font-size: calculator-rem(14);
+        font-weight: 700;
+        color: $green;
+        margin-left: 15px;
+    }
+
+    &__match-gray{
+        width: 122px;
+        height: 24px;
+        color: $gray;
+        font-size: calculator-rem(14);
+        font-weight: 400;
+        margin-left: 15px;
+    }
+
+    &__scenery{
+        width: 49px;
+        height: 24px;
+        color: $white;
+        font-weight: 400;
+        font-size: calculator-rem(14);
+    }
+
+    &__mini-wrapper{
+        width: 51px;
+        height: 51px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__mini-box{
+        width: 15px;
+        height: 15px;
+        background-color: $white;
+        border-radius: 2px;
+        color: $gray;
+        text-transform: uppercase;
+        font-size: calculator-rem(12);
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__restart-button{
+        width: 317px;
+        height: 54px;
+        border-radius: 10px;
+        background-color: $white;
+        color: $darkBlue;
+        border: none;
+        margin-top: 98px;
+
+        &:hover{
+            border: 1px solid $white;
+            background-color: $darkBlue;
+            color: $white;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+        }
+    }
+
+    &__scoreboard-winner{
+    width: 400px;
+    height: 100px;
+    background-color: $white;
+    border-radius: 15px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+
+    &__text{
+        width: 72px;
+        height: 24px;
+        color: $darkBlue;
+        font-size: calculator-rem(24);
+        font-weight: 700;
+    }
+
+    &__winner-match{
+        display: flex;
+        width: 400px;
+        justify-content: space-between;
+        margin-top: 11px;
+    }
+
+    &__scoreboard--player1{
+        width: 55px;
+        height: 35px;
+        color: $darkBlue;
+        font-size: calculator-rem(48);
+        font-weight: 700;
+        margin: 0 30px;
+    }
+
+    &__print-to-winner-match{
+        width: 75px;
+        height: 24px;
+        color: $gray;
+        font-size: calculator-rem(16);
+        font-weight: 500;
+        align-items: center;
+        margin-top: 16px;
+    }
+    
+    &__scoreboard--player2{
+        width: 55px;
+        height: 35px;
+        color: $darkBlue;
+        font-size: calculator-rem(48);
+        font-weight: 700;
+        margin: 0 30px;
+    }
+
+    &__wrapper{
+        width: 510px;
+        height: 510px;
+        // background-color: $green;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 70px;
+        padding-top: 10px;
+    }
+
+    &__move-to-players{
+        width: 160px;
+        height: 160px;
+        border-radius: 15px;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $gray;
+        text-transform: uppercase;
+        font-size: calculator-rem(130);
+        font-weight: 700;
+    }
+
+    &__history-to-move{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__text-history{
+        width: 162px;
+        height: 24px;
+        color: $white;
+        font-size: calculator-rem(16);
+        font-weight: 700;
+        margin: 66px 0 8px 0;
+    }
+
+    &__print-move-to-player{
+        width: 317px;
+        height: 50px;
+        background-color: $white;
+        border-radius: 10px;
+        display: flex;
+        margin-top: 20px;
+    }
+
+    &__print-last-move{
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $gray;
+        font-size: calculator-rem(48);
+        font-weight: 700;
+    }
+
+    &__print-player-and-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-left: 16px;
+    }
+
+    &__print-history-player1-and-color-gray{
+        color: $gray;
+        font-size:calaulator-rem(48);
+        font-weight: 700;
+    }
+
+    &__print-history-player2-and-color-gray{
+        color: $gray;
+        font-size:calaulator-rem(48);
+        font-weight: 700;
+    }
+
+    &__number-square-and-color-blue{
+        color: $darkBlue;
+        font-size: calculator-rem(14);
+        font-weight: 400;
+    }
 }
