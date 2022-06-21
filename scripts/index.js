@@ -5,6 +5,7 @@ const $scorePlayer2 = document.querySelector('.section__scoreboard--player2')
 const $winnerName = document.querySelector('.winner-text')
 const $playerField1 = document.querySelector('.player1')
 const $playerField2 = document.querySelector('.player2')
+const $historyMoveList = document.querySelector('.section__history-to-move')
 
 let currentMove = 'X'
 let scorePlayer1 = 0
@@ -20,6 +21,29 @@ const winConditions = [
   [0, 4, 8],
   [2, 4, 6],
 ]
+
+const dicionaryIndexBoard = [
+  'Primeiro',
+  'Segundo',
+  'Terceiro',
+  'Quarto',
+  'Quinto',
+  'Sexto',
+  'Sétimo',
+  'Oitavo',
+  'Nono'
+]
+
+function printMoveHistory(move, playerName, boardIndex) {
+  $historyMoveList.innerHTML += `
+  <div class="section__print-move-to-player">
+  <div class="section__print-last-move">${move}</div>
+  <div class="section__print-player-and-box">
+    <span class="section__print-history-player1-and-color-gray">${playerName}</span>
+    <span class="section__number-square-and-color-blue">${dicionaryIndexBoard[boardIndex]} campo </span>
+  </div>
+`
+}
 
 $reset.addEventListener('click', function () {
   document.location.reload()
@@ -57,7 +81,11 @@ function verifyGame() {
   for (const $field of $boardList) {
     if ($field.innerHTML != '') filledField++
   }
-  if (filledField == 9) return 'draw'
+  if (filledField === 9) return 'draw'
+}
+
+function resetHistoryList() {
+  $historyMoveList.innerHTML = 'S'
 }
 
 function resetBattlefield() {
@@ -71,15 +99,27 @@ function move(boardIndex) {
   if ($boardItem.innerHTML != '') return
   $boardItem.innerHTML = currentMove
   const gameresult = verifyGame()
-  if (gameresult == 'X' || gameresult == 'O') {
+  const playerName =
+    currentMove === 'X'
+      ? $playerField1.value !== ''
+        ? $playerField1.value
+        : 'Jogador 1'
+      : $playerField2.value !== ''
+      ? $playerField2.value
+      : 'Jogador 2'
+
+  if (gameresult === 'X' || gameresult === 'O') {
     addpoint(gameresult)
     printScore()
-    pirntWinnerName('lucas')
+    pirntWinnerName(playerName)
     setTimeout(resetBattlefield, 1500)
+    setTimeout(resetHistoryList, 1500)
   }
   if (gameresult == 'draw') {
     setTimeout(resetBattlefield, 1500)
+    setTimeout(resetHistoryList, 1500)
   }
+  printMoveHistory(currentMove, playerName, boardIndex)
   toggleMove()
 }
 
