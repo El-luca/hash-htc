@@ -209,6 +209,7 @@ table {
   width: 317px;
   height: 50px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
@@ -221,6 +222,7 @@ table {
   flex-direction: column;
   background-color: #FFFFFF;
   border-radius: 10px;
+  margin-top: 15px;
 }
 .section__winner-green {
   width: 64px;
@@ -244,6 +246,7 @@ table {
   color: #FFFFFF;
   font-weight: 400;
   font-size: 0.875rem;
+  margin-top: 15px;
 }
 .section__mini-wrapper {
   width: 51px;
@@ -251,6 +254,7 @@ table {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 15px;
 }
 .section__mini-box {
   width: 15px;

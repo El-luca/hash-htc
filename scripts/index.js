@@ -5,7 +5,8 @@ const $scorePlayer2 = document.querySelector('.section__scoreboard--player2')
 const $winnerName = document.querySelector('.winner-text')
 const $playerField1 = document.querySelector('.player1')
 const $playerField2 = document.querySelector('.player2')
-const $historyMoveList = document.querySelector('.section__history-to-move')
+const $historyMoveList = document.querySelector('.section__text-history')
+const $matchHistoryList = document.querySelector('.section__history-last-match')
 
 let currentMove = 'X'
 let scorePlayer1 = 0
@@ -22,20 +23,11 @@ const winConditions = [
   [2, 4, 6],
 ]
 
-const dicionaryIndexBoard = [
-  'Primeiro',
-  'Segundo',
-  'Terceiro',
-  'Quarto',
-  'Quinto',
-  'Sexto',
-  'Sétimo',
-  'Oitavo',
-  'Nono'
-]
+const dicionaryIndexBoard = ['Primeiro', 'Segundo', 'Terceiro', 'Quarto', 'Quinto', 'Sexto', 'Sétimo', 'Oitavo', 'Nono']
 
 function printMoveHistory(move, playerName, boardIndex) {
   $historyMoveList.innerHTML += `
+  
   <div class="section__print-move-to-player">
   <div class="section__print-last-move">${move}</div>
   <div class="section__print-player-and-box">
@@ -51,6 +43,34 @@ $reset.addEventListener('click', function () {
 
 function pirntWinnerName(winnerName) {
   $winnerName.textContent = winnerName
+}
+
+function getScenary() {
+  const scenary = []
+
+  for (const $board of $boardList) {
+    const move = $board.textContent
+    scenary.push(move)
+  }
+  return scenary
+}
+
+function printMatchHitory(winner, scenary) {
+  let miniBoardScenary = ''
+
+  for (const move  of scenary){
+    miniBoardScenary += `<div class="section__mini-box">${move}</div>`
+  }
+  $matchHistoryList.innerHTML += `
+  <div class="section__scenary-history">
+    <span class="section__winner-green">Vencedor</span>
+    <p class="section__match-gray">${winner}</p>
+  </div>
+  <p class="section__scenery">Cenário</p>
+  <div class="section__mini-wrapper">
+    ${miniBoardScenary}
+  </div>
+`
 }
 
 function toggleMove() {
@@ -85,7 +105,7 @@ function verifyGame() {
 }
 
 function resetHistoryList() {
-  $historyMoveList.innerHTML = 'S'
+  $historyMoveList.innerHTML = '<span class="section__text-history">Históricos de Jogadas</span>'
 }
 
 function resetBattlefield() {
@@ -94,11 +114,21 @@ function resetBattlefield() {
   }
 }
 
-function move(boardIndex) {
+function bot(){
+  const randomNumber = Math.random() * 9
+  const index = Math.floor(randomNumber)
+  const $boardItem = $boardList[index]
+  const game = verifyGame()
+  if ($boardItem.textContent != '' && game != 'draw') return bot()
+  move(index, 'bot') 
+}
+
+function move(boardIndex, type) {
   const $boardItem = $boardList[boardIndex]
   if ($boardItem.innerHTML != '') return
   $boardItem.innerHTML = currentMove
   const gameresult = verifyGame()
+  const scenary = getScenary()
   const playerName =
     currentMove === 'X'
       ? $playerField1.value !== ''
@@ -114,13 +144,17 @@ function move(boardIndex) {
     pirntWinnerName(playerName)
     setTimeout(resetBattlefield, 1500)
     setTimeout(resetHistoryList, 1500)
+    printMatchHitory(playerName, scenary)
+    getScenary()
   }
   if (gameresult == 'draw') {
     setTimeout(resetBattlefield, 1500)
     setTimeout(resetHistoryList, 1500)
+    printMatchHitory('empate', scenary)
   }
   printMoveHistory(currentMove, playerName, boardIndex)
   toggleMove()
+  if (type === 'user') bot()
 }
 
 function addpoint(winner) {
@@ -137,7 +171,7 @@ function addBoardListiners() {
   for (let index = 0; index < $boardList.length; index++) {
     const $boardItem = $boardList[index]
     $boardItem.addEventListener('click', function () {
-      move(index)
+      move(index, 'user')
     })
   }
 }
