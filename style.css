@@ -57,6 +57,15 @@ table {
   font-family: "Ubuntu", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #45F391;
+  border-radius: 4px;
+}
+
 .wrapper {
   display: flex;
 }
@@ -133,6 +142,15 @@ table {
   border-radius: 100px;
   margin: 0;
   padding-left: 4px;
+  margin-bottom: 3px;
+}
+.section__bot-or-player.active > .ball {
+  transform: translateX(21px);
+  background-color: #45F391;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 3px;
 }
 .section__ball {
   width: 24px;
@@ -170,12 +188,20 @@ table {
   height: 32px;
   border-radius: 100px;
 }
+.section__thee-or-five.active > .ball {
+  transform: translateX(23px);
+  background-color: #45F391;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 3px;
+}
 .section__swith-ball {
   background-color: #FFFFFF;
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  margin: 4px 4px 4px 28px;
+  margin: 4px;
 }
 .section__play {
   background-color: #45F391;
@@ -207,7 +233,8 @@ table {
 }
 .section__history-last-match {
   width: 317px;
-  height: 50px;
+  max-height: 215px;
+  overflow: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

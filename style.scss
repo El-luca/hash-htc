@@ -87,7 +87,17 @@
     border-radius: 100px;
     margin: 0;
     padding-left: 4px;
-    // margin-bottom: 3px
+    margin-bottom: 3px;
+    &.active {
+       > .ball{
+        transform: translateX(21px);
+        background-color: $green;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin: 3px;
+      }
+    }
   }
 
   &__ball {
@@ -129,6 +139,16 @@
     width: 56px;
     height: 32px;
     border-radius: 100px;
+    &.active {
+      > .ball{
+       transform: translateX(23px);
+       background-color: $green;
+       width: 24px;
+       height: 24px;
+       border-radius: 50%;
+       margin: 3px;
+     }
+   }
   }
 
   &__swith-ball {
@@ -136,7 +156,7 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    margin: 4px 4px 4px 28px;
+    margin: 4px;
   }
 
   &__play {
@@ -172,7 +192,8 @@
 
   &__history-last-match {
     width: 317px;
-    height: 50px;
+    max-height: 215px;
+    overflow: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

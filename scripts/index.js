@@ -7,10 +7,15 @@ const $playerField1 = document.querySelector('.player1')
 const $playerField2 = document.querySelector('.player2')
 const $historyMoveList = document.querySelector('.section__text-history')
 const $matchHistoryList = document.querySelector('.section__history-last-match')
+const $switcherBOT = document.querySelector('.section__bot-or-player')
+const $switcherBestOf = document.querySelector('.section__thee-or-five ')
 
 let currentMove = 'X'
 let scorePlayer1 = 0
 let scorePlayer2 = 0
+let gameStart = true
+let botActive = false
+let bestOf = 3
 
 const winConditions = [
   [0, 1, 2],
@@ -41,7 +46,7 @@ $reset.addEventListener('click', function () {
   document.location.reload()
 })
 
-function pirntWinnerName(winnerName) {
+function printWinnerName(winnerName) {
   $winnerName.textContent = winnerName
 }
 
@@ -53,6 +58,21 @@ function getScenary() {
     scenary.push(move)
   }
   return scenary
+}
+
+function verifyBestOf() {
+  if (scorePlayer1 === 2 && bestOf === 3){
+    return 'X'
+  }
+  if (scorePlayer1 === 3 && bestOf === 5){
+    return 'X'
+  } 
+  if (scorePlayer2 === 2 && bestOf === 3){
+    return 'O'
+  }
+  if (scorePlayer2 === 3 && bestOf === 5){
+    return 'O'
+  }
 }
 
 function printMatchHitory(winner, scenary) {
@@ -108,10 +128,19 @@ function resetHistoryList() {
   $historyMoveList.innerHTML = '<span class="section__text-history">Históricos de Jogadas</span>'
 }
 
+function resetScoreboard() {
+  $scorePlayer1.textContent = '00'
+  $scorePlayer2.textContent = '00'
+}
+
 function resetBattlefield() {
   for (const $boardItem of $boardList) {
     $boardItem.innerHTML = ''
   }
+}
+
+function toggleBestOf() {
+  bestOf = bestOf === 3 ? 5 : 3
 }
 
 function bot(){
@@ -125,6 +154,7 @@ function bot(){
 
 function move(boardIndex, type) {
   const $boardItem = $boardList[boardIndex]
+  if (!gameStart) return
   if ($boardItem.innerHTML != '') return
   $boardItem.innerHTML = currentMove
   const gameresult = verifyGame()
@@ -139,22 +169,40 @@ function move(boardIndex, type) {
       : 'Jogador 2'
 
   if (gameresult === 'X' || gameresult === 'O') {
+    gameStart = false
     addpoint(gameresult)
     printScore()
-    pirntWinnerName(playerName)
+    printWinnerName(playerName)
     setTimeout(resetBattlefield, 1500)
     setTimeout(resetHistoryList, 1500)
     printMatchHitory(playerName, scenary)
-    getScenary()
+    // getScenary()
+    setTimeout(function(){
+      gameStart = true
+    }, 1500)
   }
   if (gameresult == 'draw') {
+    gameStart = false
     setTimeout(resetBattlefield, 1500)
     setTimeout(resetHistoryList, 1500)
     printMatchHitory('empate', scenary)
+    setTimeout(function(){
+      gameStart = true
+    }, 1500)
   }
+
+  const bestOfResult = verifyBestOf()
+
+
   printMoveHistory(currentMove, playerName, boardIndex)
   toggleMove()
-  if (type === 'user') bot()
+  if (type === 'user' && botActive) bot()
+  if (bestOfResult !== undefined) {
+    resetScoreboard()
+    scorePlayer1 = 0
+    scorePlayer2 = 0
+    alert(bestOfResult)
+  }
 }
 
 function addpoint(winner) {
@@ -177,3 +225,15 @@ function addBoardListiners() {
 }
 
 addBoardListiners()
+
+$switcherBOT.addEventListener('click', function(){
+  $switcherBOT.classList.toggle('active')
+  botActive = !botActive
+  $playerField2.value = botActive ? 'BOT' : ''
+  $playerField2.disabled = !$playerField2.disabled
+})
+
+$switcherBestOf.addEventListener('click', function(){
+  $switcherBestOf.classList.toggle('active')
+  toggleBestOf()
+})
