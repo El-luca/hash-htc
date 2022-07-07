@@ -201,7 +201,7 @@ function move(boardIndex, type) {
     resetScoreboard()
     scorePlayer1 = 0
     scorePlayer2 = 0
-    alert(bestOfResult)
+    alert(`o ganhador foi ${bestOfResult}`)
   }
 }
 
