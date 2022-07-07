@@ -162,8 +162,8 @@ function move(boardIndex, type) {
   const playerName =
     currentMove === 'X'
       ? $playerField1.value !== ''
-        ? $playerField1.value
-        : 'Jogador 1'
+      ? $playerField1.value
+      : 'Jogador 1'
       : $playerField2.value !== ''
       ? $playerField2.value
       : 'Jogador 2'
