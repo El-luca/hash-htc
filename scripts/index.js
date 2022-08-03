@@ -74,12 +74,11 @@ function printWinnerName(winnerName) {
 }
 
 function getScenary() {
-  const scenary = []
-
-  for (const $board of $boardList) {
+  const scenary = Array.from($boardList).map(($board) => {
     const move = $board.textContent
-    scenary.push(move)
-  }
+    return move
+  })
+  
   return scenary
 }
 
