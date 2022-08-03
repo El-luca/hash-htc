@@ -17,6 +17,8 @@ let gameStart = true
 let botActive = false
 let bestOf = 3
 
+const moveScinery = []
+
 const winConditions = [
   [0, 1, 2],
   [3, 4, 5],
@@ -28,9 +30,21 @@ const winConditions = [
   [2, 4, 6],
 ]
 
+
 const dicionaryIndexBoard = ['Primeiro', 'Segundo', 'Terceiro', 'Quarto', 'Quinto', 'Sexto', 'Sétimo', 'Oitavo', 'Nono']
 
-function printMoveHistory(move, playerName, boardIndex) {
+const addMoveScenary = () => {
+  const scenary = getScenary()
+  moveScinery.push(scenary)
+}
+
+const printBoardByScenery = (scenery) => {
+  for ( let index = 0; index < scenery.length; index++) {
+    $boardList[index].textContent = scenery[index]
+  }
+}
+
+const printMoveHistory = (move, playerName, boardIndex) => {
   $historyMoveList.innerHTML += `
   
   <div class="section__print-move-to-player">
@@ -40,9 +54,18 @@ function printMoveHistory(move, playerName, boardIndex) {
     <span class="section__number-square-and-color-blue">${dicionaryIndexBoard[boardIndex]} campo </span>
   </div>
 `
+  const $historyMoveItens = document.querySelectorAll('.section__print-move-to-player')
+  for (let index = 0; index < $historyMoveItens.length; index++) {
+    const $moveItem = $historyMoveItens[index]
+    $moveItem.addEventListener('click', function(){
+      const currentScenery = moveScinery[index]
+      printBoardByScenery(currentScenery)
+    })
+  }
+
 }
 
-$reset.addEventListener('click', function () {
+$reset.addEventListener('click', () => {
   document.location.reload()
 })
 
@@ -179,6 +202,7 @@ function move(boardIndex, type) {
     // getScenary()
     setTimeout(function(){
       gameStart = true
+      if (botActive) currentMove = 'X'
     }, 1500)
   }
   if (gameresult == 'draw') {
@@ -188,14 +212,15 @@ function move(boardIndex, type) {
     printMatchHitory('empate', scenary)
     setTimeout(function(){
       gameStart = true
+      if(botActive) currentMove = 'X'
     }, 1500)
   }
 
   const bestOfResult = verifyBestOf()
 
-
   printMoveHistory(currentMove, playerName, boardIndex)
   toggleMove()
+  addMoveScenary()
   if (type === 'user' && botActive) bot()
   if (bestOfResult !== undefined) {
     resetScoreboard()
